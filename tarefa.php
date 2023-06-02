@@ -7,7 +7,7 @@ include "classes/Tarefa.php";
 include "classes/Anexo.php";
 include "classes/RepositorioTarefas.php";
 
-$repositorio_tarefas = new RepositorioTarefas($mysqli);
+$repositorio_tarefas = new RepositorioTarefas($pdo);
 
 $tarefa = $repositorio_tarefas->buscar($_GET['id']);
 
