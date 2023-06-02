@@ -115,17 +115,17 @@ class RepositorioTarefas
 
     public function salvar_anexo(Anexo $anexo)
     {
-        $sqlGravarAnexos = "INSERT INTO anexos
-            (tarefa_id, nome, arquivo)
-            VALUES
-            (:tarefa_id, :nome, :arquivo)    
+        $sqlGravar = "INSERT INTO anexos 
+        (tarefa_id, nome, arquivo) 
+        VALUES 
+        (:tarefa_id, :nome, :arquivo)
         ";
 
-        $query = $this->pdo->prepare($sqlGravarAnexos);
+        $query = $this->pdo->prepare($sqlGravar);
         $query->execute([
             'tarefa_id' => $anexo->getTarefaId(),
-            'nome' => strip_tags($anexo->getNome()),
-            'arquvio' => strip_tags($anexo->getArquivo())
+            'nome' => $anexo->getNome(),
+            'arquivo' => $anexo->getArquivo()
         ]);
     }
 

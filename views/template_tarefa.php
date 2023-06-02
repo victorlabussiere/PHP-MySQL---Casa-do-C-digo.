@@ -3,31 +3,19 @@
 <head>
     <meta charset="utf-8" />
     <title>Gerenciador de Tarefas</title>
-    <link rel="stylesheet" href="tarefas.css" type="text/css" />
+    <link rel="stylesheet" href="assets/tarefas.css" type="text/css" />
 </head>
 
 <body>
     <div id="bloco_principal">
         <h1>Tarefa: <?php echo htmlentities($tarefa->getNome()); ?></h1>
 
-        <p><a href="tarefas.php">Voltar para a lista de tarefas</a>.</p>
+        <p><a href="index.php?rota=tarefas">Voltar para a lista de tarefas</a>.</p>
 
-        <p>
-            <strong>Concluída:</strong>
-            <?php echo traduz_concluida($tarefa->getConcluida()); ?>
-        </p>
-        <p>
-            <strong>Descrição:</strong>
-            <?php echo nl2br(htmlentities($tarefa->getDescricao())); ?>
-        </p>
-        <p>
-            <strong>Prazo:</strong>
-            <?php echo traduz_data_para_exibir($tarefa->getPrazo()); ?>
-        </p>
-        <p>
-            <strong>Prioridade:</strong>
-            <?php echo traduz_prioridade($tarefa->getPrioridade()); ?>
-        </p>
+        <p><strong>Concluída:</strong> <?php echo traduz_concluida($tarefa->getConcluida()); ?></p>
+        <p><strong>Descrição:</strong> <?php echo nl2br(htmlentities($tarefa->getDescricao())); ?></p>
+        <p><strong>Prazo:</strong> <?php echo traduz_data_para_exibir($tarefa->getPrazo()); ?></p>
+        <p><strong>Prioridade:</strong> <?php echo traduz_prioridade($tarefa->getPrioridade()); ?></p>
 
         <h2>Anexos</h2>
         <!-- lista de anexos -->
@@ -42,7 +30,7 @@
                         <td><?php echo htmlentities($anexo->getNome()); ?></td>
                         <td>
                             <a href="anexos/<?php echo $anexo->getArquivo(); ?>">Download</a>
-                            <a href="remover_anexo.php?id=<?php echo $anexo->getId(); ?>">Remover</a>
+                            <a href="index.php?rota=remover_anexo&id=<?php echo $anexo->getId(); ?>">Remover</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

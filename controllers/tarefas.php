@@ -1,14 +1,5 @@
 <?php
 
-include "config.php";
-include "banco.php";
-include "ajudantes.php";
-include "classes/Tarefa.php";
-include "classes/Anexo.php";
-include "classes/RepositorioTarefas.php";
-
-$repositorio_tarefas = new RepositorioTarefas($pdo);
-
 $exibir_tabela = true;
 
 $tem_erros = false;
@@ -61,11 +52,11 @@ if (tem_post()) {
             enviar_email($tarefa);
         }
 
-        header('Location: tarefas.php');
+        header('Location: index.php?rota=tarefas');
         die();
     }
 }
 
 $tarefas = $repositorio_tarefas->buscar();
 
-include "template.php";
+require __DIR__ . "/../views/template.php";

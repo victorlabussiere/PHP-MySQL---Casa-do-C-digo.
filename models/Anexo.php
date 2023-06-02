@@ -2,10 +2,10 @@
 
 class Anexo
 {
-    private $id = 0;
-    private $tarefa_id = 0;
-    private $nome = "";
-    private $arquivo = "";
+    private $id;
+    private $tarefa_id;
+    private $nome;
+    private $arquivo;
 
     public function setId(int $id)
     {

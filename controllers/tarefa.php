@@ -1,14 +1,5 @@
 <?php
 
-include "config.php";
-include "banco.php";
-include "ajudantes.php";
-include "classes/Tarefa.php";
-include "classes/Anexo.php";
-include "classes/RepositorioTarefas.php";
-
-$repositorio_tarefas = new RepositorioTarefas($pdo);
-
 $tarefa = $repositorio_tarefas->buscar($_GET['id']);
 
 $tem_erros = false;
@@ -21,7 +12,10 @@ if (tem_post()) {
         $tem_erros = true;
         $erros_validacao['anexo'] = 'Você deve selecionar um arquivo para anexar';
     } else {
+        $tem_erros = false;
+        unset($erros_validacao);
         $dados_anexo = $_FILES['anexo'];
+
         if (tratar_anexo($dados_anexo)) {
             $anexo = new Anexo();
             $anexo->setTarefaId($tarefa_id);
@@ -35,8 +29,9 @@ if (tem_post()) {
 
     if (!$tem_erros) {
         $repositorio_tarefas->salvar_anexo($anexo);
-        header('Location: tarefa.php?id=' . $anexo->getTarefaId());
     }
 }
 
-include "template_tarefa.php";
+$tarefa = $repositorio_tarefas->buscar($_GET['id']);
+
+include __DIR__ . "/../views/template_tarefa.php";
